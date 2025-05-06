@@ -15,7 +15,9 @@ function App() {
 
   const calculateSalaries = async () => {
     try {
-      const response = await fetch('/api/salary/calculate', {
+     ```javascript
+     const response = await fetch(`${process.env.REACT_APP_API_URL}/api/salary/calculate`, {
+     ```
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ grossSalary, benefits }),
