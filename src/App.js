@@ -13,22 +13,20 @@ function App() {
   const [initialSalary, setInitialSalary] = useState(null);
   const [adjustedSalary, setAdjustedSalary] = useState(null);
 
-  const calculateSalaries = async () => {
-    try {
-     ```javascript
-     const response = await fetch(`${process.env.REACT_APP_API_URL}/api/salary/calculate`, {
-     ```
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ grossSalary, benefits }),
-      });
-      const data = await response.json();
-      setInitialSalary(data.initial);
-      setAdjustedSalary(data.adjusted);
-    } catch (error) {
-      console.error('Error calculating salaries:', error);
-    }
-  };
+const calculateSalaries = async () => {
+  try {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/salary/calculate`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ grossSalary, benefits }),
+    });
+    const data = await response.json();
+    setInitialSalary(data.initial);
+    setAdjustedSalary(data.adjusted);
+  } catch (error) {
+    console.error('Error calculating salaries:', error);
+  }
+};
 
   useEffect(() => {
     calculateSalaries();
