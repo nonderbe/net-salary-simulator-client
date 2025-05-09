@@ -22,11 +22,17 @@
   "gross_salary_label": "Salaire Brut",
   "benefit_in_kind": "Avantage en Nature",
   "social_security": "Cotisation de Sécurité Sociale",
+  "employer_social_security": "Cotisation Sociale de l'Employeur",
   "withholding_tax": "Retenue à la Source",
   "net_salary": "Salaire Net",
+  "lease_price": "Coût de Location",
   "disallowed_expense_tax": "Taxe sur Dépenses Non Admises",
   "net_salary_change": "Changement de Salaire Net",
+  "extralegal_benefits": "Avantages Extralégaux",
   "footer": "Calcul indicatif. Consultez <a href='https://www.socialsecurity.be' target='_blank'>socialsecurity.be</a> pour plus de détails.",
   "language": "Langue",
-  "no_data": "Entrez les détails pour voir les résultats."
+  "no_data": "Entrez les détails pour voir les résultats.",
+  "errors": {
+    "lease_cost_error": "Le coût de location doit être non négatif."
+  }
 }
