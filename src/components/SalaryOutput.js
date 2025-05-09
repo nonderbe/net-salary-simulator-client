@@ -83,7 +83,7 @@ function SalaryOutput({ initialSalary, adjustedSalary }) {
                 if (conditional && initialSalary[key] === 0 && adjustedSalary[key] === 0) {
                   return null;
                 }
-                if (adjustedOnly && !adjusted vegasSalary[key]) {
+                if (adjustedOnly && !adjustedSalary[key]) {
                   return null;
                 }
                 const initialValue = adjustedOnly || initialSalary[key] === undefined ? null : initialSalary[key];
