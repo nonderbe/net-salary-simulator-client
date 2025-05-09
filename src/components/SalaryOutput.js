@@ -6,8 +6,8 @@ function SalaryOutput({ initialSalary, adjustedSalary }) {
   }
 
   // Ensure all required keys exist to prevent undefined errors
-  const requiredKeys = ['employerCost', 'grossSalary', 'netSalary', 'leasePrice', 'employerSocialSecurity', 'benefitInKind', 'withholdingTax', 'disallowedExpenseTax', 'netSalaryChange', 'extralegalBenefits'];
-  const isValidSalary = (salary) => requiredKeys.every((key) => key in salary || key === 'disallowedExpenseTax' || key === 'netSalaryChange' || key === 'extralegalBenefits');
+  const requiredKeys = ['employerCost', 'grossSalary', 'netSalary', 'leasePrice', 'employerSocialSecurity', 'benefitInKind', 'withholdingTax', 'disallowedExpenseTax', 'extralegalBenefits'];
+  const isValidSalary = (salary) => requiredKeys.every((key) => key in salary || key === 'disallowedExpenseTax' || key === 'extralegalBenefits');
 
   if (!isValidSalary(initialSalary) || !isValidSalary(adjustedSalary)) {
     return <p>Error: Invalid salary data.</p>;
@@ -61,8 +61,6 @@ function SalaryOutput({ initialSalary, adjustedSalary }) {
                   .join(', ')
               : '-',
         },
-        { label: 'Net Salary', key: 'netSalary' },
-        { label: 'Net Salary Change', key: 'netSalaryChange', adjustedOnly: true },
       ],
     },
   ];
@@ -85,7 +83,24 @@ function SalaryOutput({ initialSalary, adjustedSalary }) {
                 <td>{label}</td>
                 <td>{isCategory && initialSalary[key] !== undefined ? `€${initialSalary[key].toFixed(2)}` : '-'}</td>
                 <td>{isCategory && adjustedSalary[key] !== undefined ? `€${adjustedSalary[key].toFixed(2)}` : '-'}</td>
-                <td>-</td>
+                <td>
+                  {isCategory && initialSalary[key] !== undefined && adjustedSalary[key] !== undefined ? (
+                    <span
+                      className={
+                        adjustedSalary[key] - initialSalary[key] > 0
+                          ? 'difference-positive'
+                          : adjustedSalary[key] - initialSalary[key] < 0
+                          ? 'difference-negative'
+                          : ''
+                      }
+                    >
+                      {adjustedSalary[key] - initialSalary[key] > 0 ? '+' : ''}€
+                      {(adjustedSalary[key] - initialSalary[key]).toFixed(2)}
+                    </span>
+                  ) : (
+                    '-'
+                  )}
+                </td>
               </tr>
               {subcategories.map(({ label, key, conditional, adjustedOnly, getValue }) => {
                 if (conditional && initialSalary[key] === 0 && adjustedSalary[key] === 0) {
