@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
 function BenefitsSelector({ benefits, setBenefits }) {
-  const { t } = useTranslation();
   const [leaseCostError, setLeaseCostError] = useState('');
 
   const handleBenefitChange = (benefit, field, value) => {
     if (benefit === 'companyCar' && field === 'leaseCost') {
       const numValue = Number(value);
       if (numValue < 0) {
-        setLeaseCostError(t('lease_cost_error', { ns: 'errors' }));
+        setLeaseCostError('Lease cost must be non-negative.');
         return;
       } else {
         setLeaseCostError('');
@@ -22,86 +20,78 @@ function BenefitsSelector({ benefits, setBenefits }) {
   };
 
   return (
-    <div className="flex flex-wrap gap-6 justify-center mb-8">
-      <div className="bg-white p-4 rounded-lg shadow-md">
-        <label className="flex items-center space-x-2">
+    <div className="benefits-selector">
+      <div className="benefit-item">
+        <label>
           <input
             type="checkbox"
             checked={benefits.companyCar.active}
             onChange={(e) => handleBenefitChange('companyCar', 'active', e.target.checked)}
-            className="form-checkbox text-secondary"
           />
-          <span className="text-gray-700 font-medium">{t('company_car')}</span>
+          Company Car
         </label>
         {benefits.companyCar.active && (
           <div className="mt-4 space-y-3">
             <label className="block">
-              {t('catalog_value')}
-              <input
-                type="number"
-                value={benefits.companyCar.catalogValue}
-                onChange={(e) => handleBenefitChange('companyCar', 'catalogValue', Number(e.target.value))}
-                min="10000"
-                className="mt-1 w-full p-2 border rounded focus:ring-secondary focus:border-secondary"
-              />
-            </label>
-            <label className="block">
-              {t('co2_emissions')}
-              <input
-                type="number"
-                value={benefits.companyCar.co2}
-                onChange={(e) => handleBenefitChange('companyCar', 'co2', Number(e.target.value))}
-                min="0"
-                className="mt-1 w-full p-2 border rounded focus:ring-secondary focus:border-secondary"
-              />
-            </label>
-            <label className="block">
-              {t('lease_cost')}
+              Monthly Lease Cost (€):
               <input
                 type="number"
                 value={benefits.companyCar.leaseCost}
                 onChange={(e) => handleBenefitChange('companyCar', 'leaseCost', Number(e.target.value))}
                 min="0"
-                className={`mt-1 w-full p-2 border rounded focus:ring-secondary focus:border-secondary ${
-                  leaseCostError ? 'border-danger' : ''
-                }`}
+                className={leaseCostError ? 'error' : ''}
               />
-              {leaseCostError && <p className="text-danger text-sm mt-1">{leaseCostError}</p>}
+              {leaseCostError && <p className="error-message">{leaseCostError}</p>}
             </label>
             <label className="block">
-              {t('fuel_type')}
+              Catalog Value (€):
+              <input
+                type="number"
+                value={benefits.companyCar.catalogValue}
+                onChange={(e) => handleBenefitChange('companyCar', 'catalogValue', Number(e.target.value))}
+                min="10000"
+              />
+            </label>
+            <label className="block">
+              CO2 Emissions (g/km):
+              <input
+                type="number"
+                value={benefits.companyCar.co2}
+                onChange={(e) => handleBenefitChange('companyCar', 'co2', Number(e.target.value))}
+                min="0"
+              />
+            </label>
+            <label className="block">
+              Fuel Type:
               <select
                 value={benefits.companyCar.fuelType}
                 onChange={(e) => handleBenefitChange('companyCar', 'fuelType', e.target.value)}
-                className="mt-1 w-full p-2 border rounded focus:ring-secondary focus:border-secondary"
               >
-                <option value="diesel">{t('diesel')}</option>
-                <option value="petrol">{t('petrol')}</option>
-                <option value="electric">{t('electric')}</option>
+                <option value="diesel">Diesel</option>
+                <option value="petrol">Petrol</option>
+                <option value="electric">Electric</option>
               </select>
             </label>
           </div>
         )}
       </div>
-      <div className="bg-white p-4 rounded-lg shadow-md">
-        <label className="flex items-center space-x-2">
+      <div className="benefit-item">
+        <label>
           <input
             type="checkbox"
             checked={benefits.bicycle.active}
             onChange={(e) => handleBenefitChange('bicycle', 'active', e.target.checked)}
-            className="form-checkbox text-secondary"
           />
-          <span className="text-gray-700 font-medium">{t('bicycle')}</span>
+          Company Bicycle
         </label>
         {benefits.bicycle.active && (
           <label className="block mt-4">
-            {t('lease_cost')}
+            Monthly Lease Cost (€):
             <input
               type="number"
               value={benefits.bicycle.leaseCost}
               onChange={(e) => handleBenefitChange('bicycle', 'leaseCost', Number(e.target.value))}
               min="0"
-              className="mt-1 w-full p-2 border rounded focus:ring-secondary focus:border-secondary"
             />
           </label>
         )}
