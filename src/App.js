@@ -7,26 +7,26 @@ import './App.css';
 function App() {
   const [grossSalary, setGrossSalary] = useState(3000);
   const [benefits, setBenefits] = useState({
-    companyCar: { active: false, catalogValue: 40000, co2: 120, fuelType: 'diesel' },
+    companyCar: { active: false, catalogValue: 40000, co2: 120, fuelType: 'diesel', leaseCost: 500 },
     bicycle: { active: false, leaseCost: 50 },
   });
   const [initialSalary, setInitialSalary] = useState(null);
   const [adjustedSalary, setAdjustedSalary] = useState(null);
 
-const calculateSalaries = async () => {
-  try {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/salary/calculate`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ grossSalary, benefits }),
-    });
-    const data = await response.json();
-    setInitialSalary(data.initial);
-    setAdjustedSalary(data.adjusted);
-  } catch (error) {
-    console.error('Error calculating salaries:', error);
-  }
-};
+  const calculateSalaries = async () => {
+    try {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/salary/calculate`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ grossSalary, benefits }),
+      });
+      const data = await response.json();
+      setInitialSalary(data.initial);
+      setAdjustedSalary(data.adjusted);
+    } catch (error) {
+      console.error('Error calculating salaries:', error);
+    }
+  };
 
   useEffect(() => {
     calculateSalaries();
@@ -40,15 +40,8 @@ const calculateSalaries = async () => {
         <BenefitsSelector benefits={benefits} setBenefits={setBenefits} />
       </header>
       <div className="main">
-        <div className="column">
-          <h2>Initial Salary</h2>
-          <SalaryInput grossSalary={grossSalary} setGrossSalary={setGrossSalary} />
-          <SalaryOutput salary={initialSalary} />
-        </div>
-        <div className="column">
-          <h2>Adjusted Salary with Benefits</h2>
-          <SalaryOutput salary={adjustedSalary} />
-        </div>
+        <h2>Salary Comparison</h2>
+        <SalaryOutput initialSalary={initialSalary} adjustedSalary={adjustedSalary} />
       </div>
       <footer>
         <p>
