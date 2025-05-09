@@ -5,6 +5,14 @@ function SalaryOutput({ initialSalary, adjustedSalary }) {
     return <p>Enter details to see results.</p>;
   }
 
+  // Ensure all required keys exist to prevent undefined errors
+  const requiredKeys = ['employerCost', 'grossSalary', 'netSalary', 'leasePrice', 'employerSocialSecurity', 'benefitInKind', 'withholdingTax', 'disallowedExpenseTax', 'netSalaryChange', 'extralegalBenefits'];
+  const isValidSalary = (salary) => requiredKeys.every((key) => key in salary || key === 'disallowedExpenseTax' || key === 'netSalaryChange' || key === 'extralegalBenefits');
+
+  if (!isValidSalary(initialSalary) || !isValidSalary(adjustedSalary)) {
+    return <p>Error: Invalid salary data.</p>;
+  }
+
   const categories = [
     {
       label: "Employer's Payroll Cost",
@@ -47,9 +55,9 @@ function SalaryOutput({ initialSalary, adjustedSalary }) {
           label: 'Extralegal Benefits',
           key: 'extralegalBenefits',
           getValue: (salary) =>
-            salary.extralegalBenefits.length > 0
+            salary.extralegalBenefits && salary.extralegalBenefits.length > 0
               ? salary.extralegalBenefits
-                  .map((b) => b === 'companyCar' ? 'Company Car' : 'Company Bicycle')
+                  .map((b) => (b === 'companyCar' ? 'Company Car' : 'Company Bicycle'))
                   .join(', ')
               : '-',
         },
@@ -75,8 +83,8 @@ function SalaryOutput({ initialSalary, adjustedSalary }) {
             <React.Fragment key={label}>
               <tr className={isCategory ? 'category' : ''}>
                 <td>{label}</td>
-                <td>{isCategory ? `€${initialSalary[key].toFixed(2)}` : '-'}</td>
-                <td>{isCategory ? `€${adjustedSalary[key].toFixed(2)}` : '-'}</td>
+                <td>{isCategory && initialSalary[key] !== undefined ? `€${initialSalary[key].toFixed(2)}` : '-'}</td>
+                <td>{isCategory && adjustedSalary[key] !== undefined ? `€${adjustedSalary[key].toFixed(2)}` : '-'}</td>
                 <td>-</td>
               </tr>
               {subcategories.map(({ label, key, conditional, adjustedOnly, getValue }) => {
