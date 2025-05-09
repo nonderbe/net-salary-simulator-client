@@ -1,21 +1,43 @@
 import React from 'react';
 
-function SalaryOutput({ salary }) {
-  if (!salary) return <p>Enter details to see results.</p>;
+function SalaryOutput({ initialSalary, adjustedSalary }) {
+  if (!initialSalary || !adjustedSalary) {
+    return <p>Enter details to see results.</p>;
+  }
+
+  const components = [
+    { label: "Employer's Payroll Cost", key: 'employerCost' },
+    { label: 'Gross Salary', key: 'grossSalary' },
+    { label: 'Benefit in Kind', key: 'benefitInKind', conditional: true },
+    { label: 'Social Security Contribution', key: 'socialSecurity' },
+    { label: 'Withholding Tax', key: 'withholdingTax' },
+    { label: 'Net Salary', key: 'netSalary' },
+    { label: 'Disallowed Expense Tax', key: 'disallowedExpenseTax', adjustedOnly: true, conditional: true },
+    { label: 'Net Salary Change', key: 'netSalaryChange', adjustedOnly: true },
+  ];
 
   return (
-    <div className="output">
-      <p><strong>Employer's Payroll Cost:</strong> €{salary.employerCost.toFixed(2)}</p>
-      <p><strong>Gross Salary:</strong> €{salary.grossSalary.toFixed(2)}</p>
-      {salary.benefitInKind > 0 && (
-        <p><strong>Benefit in Kind:</strong> €{salary.benefitInKind.toFixed(2)}</p>
-      )}
-      <p><strong>Social Security Contribution:</strong> €{salary.socialSecurity.toFixed(2)}</p>
-      <p><strong>Withholding Tax:</strong> €{salary.withholdingTax.toFixed(2)}</p>
-      <p><strong>Net Salary:</strong> €{salary.netSalary.toFixed(2)}</p>
-      {salary.netSalaryChange && (
-        <p><strong>Net Salary Change:</strong> €{salary.netSalaryChange.toFixed(2)}</p>
-      )}
+    <div className="salary-output">
+      <div className="salary-row header">
+        <span>Component</span>
+        <span>Initial</span>
+        <span>Adjusted</span>
+      </div>
+      {components.map(({ label, key, conditional, adjustedOnly }) => {
+        if (conditional && initialSalary[key] === 0 && adjustedSalary[key] === 0) {
+          return null;
+        }
+        if (adjustedOnly && !adjustedSalary[key]) {
+          return null;
+        }
+        return (
+          <div className="salary-row" key={key}>
+            <span>{label}</span>
+            <span>{adjustedOnly || initialSalary[key] === undefined ? '-' : `€${initialSalary[key].toFixed(2)}`}</span>
+            <span>{adjustedSalary[key] ? `€${adjustedSalary[key].toFixed(2)}` : '-'}</span>
+          </div>
+        );
+      })}
     </div>
   );
 }
