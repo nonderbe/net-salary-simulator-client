@@ -12,6 +12,11 @@ header {
 
 header h1 {
   font-size: 2em;
+  color: #1e3a8a; /* Deep blue */
+}
+
+header p {
+  color: #4b5563; /* Gray */
 }
 
 .benefits-selector {
@@ -26,47 +31,113 @@ header h1 {
   background: #f9f9f9;
   padding: 10px;
   border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .main {
-  display: flex;
-  gap: 20px;
-}
-
-.column {
-  flex: 1;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
+  background: #fff;
 }
 
 h2 {
   font-size: 1.5em;
   margin-bottom: 20px;
+  text-align: center;
+  color: #1e3a8a;
 }
 
-input, select {
+.salary-output {
+  overflow-x: auto;
+}
+
+.salary-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.salary-table th,
+.salary-table td {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+
+.salary-table th {
+  background: #1e3a8a;
+  color: #fff;
+  font-weight: bold;
+}
+
+.salary-table tr:hover {
+  background: #f9f9f9;
+}
+
+.salary-table .category {
+  background: #e0f2fe; /* Light blue */
+  font-weight: bold;
+  color: #1e3a8a;
+}
+
+.salary-table .subcategory {
+  padding-left: 20px;
+  color: #4b5563;
+}
+
+.salary-table .difference-positive {
+  color: #10b981; /* Green */
+  font-weight: bold;
+}
+
+.salary-table .difference-negative {
+  color: #ef4444; /* Red */
+  font-weight: bold;
+}
+
+input,
+select {
   padding: 8px;
   margin: 5px 0;
   width: 100%;
   box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
-.output {
-  margin-top: 20px;
+input.error {
+  border-color: #ef4444;
 }
 
-.output p {
-  margin: 5px 0;
+.error-message {
+  color: #ef4444;
+  font-size: 0.9em;
+  margin-top: 2px;
 }
 
 footer {
   text-align: center;
   margin-top: 20px;
+  color: #4b5563;
+}
+
+footer a {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
 }
 
 @media (max-width: 768px) {
-  .main {
-    flex-direction: column;
+  .salary-table th,
+  .salary-table td {
+    font-size: 0.9em;
+  }
+
+  .salary-table .subcategory {
+    padding-left: 10px;
   }
 }
