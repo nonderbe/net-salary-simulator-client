@@ -22,11 +22,17 @@
   "gross_salary_label": "Gross Salary",
   "benefit_in_kind": "Benefit in Kind",
   "social_security": "Social Security Contribution",
+  "employer_social_security": "Employer's Social Security",
   "withholding_tax": "Withholding Tax",
   "net_salary": "Net Salary",
+  "lease_price": "Lease Price",
   "disallowed_expense_tax": "Disallowed Expense Tax",
   "net_salary_change": "Net Salary Change",
+  "extralegal_benefits": "Extralegal Benefits",
   "footer": "Indicative calculation. Consult <a href='https://www.socialsecurity.be' target='_blank'>socialsecurity.be</a> for details.",
   "language": "Language",
-  "no_data": "Enter details to see results."
+  "no_data": "Enter details to see results.",
+  "errors": {
+    "lease_cost_error": "Lease cost must be non-negative."
+  }
 }
