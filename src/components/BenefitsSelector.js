@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 function BenefitsSelector({ benefits, setBenefits }) {
   const { t } = useTranslation();
+  const [leaseCostError, setLeaseCostError] = useState('');
 
   const handleBenefitChange = (benefit, field, value) => {
+    if (benefit === 'companyCar' && field === 'leaseCost') {
+      const numValue = Number(value);
+      if (numValue < 0) {
+        setLeaseCostError(t('lease_cost_error', { ns: 'errors' }));
+        return;
+      } else {
+        setLeaseCostError('');
+      }
+    }
     setBenefits((prev) => ({
       ...prev,
       [benefit]: { ...prev[benefit], [field]: value },
@@ -52,8 +62,11 @@ function BenefitsSelector({ benefits, setBenefits }) {
                 value={benefits.companyCar.leaseCost}
                 onChange={(e) => handleBenefitChange('companyCar', 'leaseCost', Number(e.target.value))}
                 min="0"
-                className="mt-1 w-full p-2 border rounded focus:ring-secondary focus:border-secondary"
+                className={`mt-1 w-full p-2 border rounded focus:ring-secondary focus:border-secondary ${
+                  leaseCostError ? 'border-danger' : ''
+                }`}
               />
+              {leaseCostError && <p className="text-danger text-sm mt-1">{leaseCostError}</p>}
             </label>
             <label className="block">
               {t('fuel_type')}
