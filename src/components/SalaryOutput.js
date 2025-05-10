@@ -1,63 +1,89 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 function SalaryOutput({ initialSalary, adjustedSalary }) {
+  const { t } = useTranslation();
+
   if (!initialSalary || !adjustedSalary) {
-    return <p>Enter details to see results.</p>;
+    return <p>{t('salaryOutput.enterDetails')}</p>;
   }
 
   // Ensure all required keys exist to prevent undefined errors
-  const requiredKeys = ['employerCost', 'grossSalary', 'netSalary', 'leasePrice', 'employerSocialSecurity', 'benefitInKind', 'withholdingTax', 'disallowedExpenseTax', 'extralegalBenefits'];
-  const isValidSalary = (salary) => requiredKeys.every((key) => key in salary || key === 'disallowedExpenseTax' || key === 'extralegalBenefits');
+  const requiredKeys = [
+    'employerCost',
+    'grossSalary',
+    'netSalary',
+    'leasePrice',
+    'employerSocialSecurity',
+    'socialSecurity',
+    'benefitInKind',
+    'withholdingTax',
+    'disallowedExpenseTax',
+    'extralegalBenefits',
+  ];
+  const isValidSalary = (salary) =>
+    requiredKeys.every((key) => key in salary || key === 'disallowedExpenseTax' || key === 'extralegalBenefits');
 
   if (!isValidSalary(initialSalary) || !isValidSalary(adjustedSalary)) {
-    return <p>Error: Invalid salary data.</p>;
+    return <p>{t('salaryOutput.invalidData')}</p>;
   }
 
   const categories = [
     {
-      label: "Employer's Payroll Cost",
+      label: t('salaryOutput.employerCost'),
       key: 'employerCost',
       isCategory: true,
       subcategories: [
         {
-          label: 'Lease Price',
+          label: t('salaryOutput.leasePrice'),
           key: 'leasePrice',
           conditional: true,
           getValue: (salary) => (salary.leasePrice ? `€${salary.leasePrice.toFixed(2)}` : '-'),
         },
         {
-          label: 'Disallowed Expense Tax',
+          label: t('salaryOutput.disallowedExpenseTax'),
           key: 'disallowedExpenseTax',
           conditional: true,
           adjustedOnly: true,
         },
         {
-          label: "Employer's Social Security",
+          label: t('salaryOutput.employerSocialSecurity'),
           key: 'employerSocialSecurity',
         },
       ],
     },
     {
-      label: 'Gross Salary',
+      label: t('salaryOutput.grossSalary'),
       key: 'grossSalary',
       isCategory: true,
       subcategories: [
-        { label: 'Benefit in Kind', key: 'benefitInKind', conditional: true },
-        { label: 'Withholding Tax', key: 'withholdingTax' },
+        {
+          label: t('salaryOutput.employeeSocialSecurity'),
+          key: 'socialSecurity',
+        },
+        {
+          label: t('salaryOutput.benefitInKind'),
+          key: 'benefitInKind',
+          conditional: true,
+        },
+        {
+          label: t('salaryOutput.withholdingTax'),
+          key: 'withholdingTax',
+        },
       ],
     },
     {
-      label: 'Net Salary',
+      label: t('salaryOutput.netSalary'),
       key: 'netSalary',
       isCategory: true,
       subcategories: [
         {
-          label: 'Extralegal Benefits',
+          label: t('salaryOutput.extralegalBenefits'),
           key: 'extralegalBenefits',
           getValue: (salary) =>
             salary.extralegalBenefits && salary.extralegalBenefits.length > 0
               ? salary.extralegalBenefits
-                  .map((b) => (b === 'companyCar' ? 'Company Car' : 'Company Bicycle'))
+                  .map((b) => t(`salaryOutput.benefits.${b}`))
                   .join(', ')
               : '-',
         },
@@ -70,15 +96,15 @@ function SalaryOutput({ initialSalary, adjustedSalary }) {
       <table className="salary-table">
         <thead>
           <tr>
-            <th>Component</th>
-            <th>Initial</th>
-            <th>Adjusted</th>
-            <th>Difference</th>
+            <th>{t('salaryOutput.component')}</th>
+            <th>{t('salaryOutput.initial')}</th>
+            <th>{t('salaryOutput.adjusted')}</th>
+            <th>{t('salaryOutput.difference')}</th>
           </tr>
         </thead>
         <tbody>
           {categories.map(({ label, key, isCategory, subcategories }) => (
-            <React.Fragment key={label}>
+            <React.Fragment key={key}>
               <tr className={isCategory ? 'category' : ''}>
                 <td>{label}</td>
                 <td>{isCategory && initialSalary[key] !== undefined ? `€${initialSalary[key].toFixed(2)}` : '-'}</td>
