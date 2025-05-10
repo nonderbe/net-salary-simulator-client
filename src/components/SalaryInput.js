@@ -1,10 +1,13 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 function SalaryInput({ grossSalary, setGrossSalary }) {
+  const { t } = useTranslation();
+
   return (
     <div className="mb-6">
       <label>
-        Gross Monthly Salary (€):
+        {t('salaryInput.grossSalary')}:
         <input
           type="number"
           value={grossSalary}
@@ -13,8 +16,8 @@ function SalaryInput({ grossSalary, setGrossSalary }) {
           step="100"
         />
       </label>
-      <p>Marital Status: Single</p>
-      <p>Dependents: 0</p>
+      <p>{t('salaryInput.maritalStatus')}</p>
+      <p>{t('salaryInput.dependents')}</p>
     </div>
   );
 }
