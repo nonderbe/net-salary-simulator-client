@@ -1,38 +1,55 @@
 {
-  "title": "Net Salary Simulator",
-  "subtitle": "Calculate how social benefits affect your net salary.",
-  "gross_salary": "Gross Monthly Salary (€)",
-  "marital_status": "Marital Status: Single",
-  "dependents": "Dependents: 0",
-  "company_car": "Company Car",
-  "catalog_value": "Catalog Value (€)",
-  "co2_emissions": "CO2 Emissions (g/km)",
-  "lease_cost": "Monthly Lease Cost (€)",
-  "fuel_type": "Fuel Type",
-  "diesel": "Diesel",
-  "petrol": "Petrol",
-  "electric": "Electric",
-  "bicycle": "Company Bicycle",
-  "salary_comparison": "Salary Comparison",
-  "component": "Component",
-  "initial": "Initial",
-  "adjusted": "Adjusted",
-  "difference": "Difference",
-  "employer_cost": "Employer's Payroll Cost",
-  "gross_salary_label": "Gross Salary",
-  "benefit_in_kind": "Benefit in Kind",
-  "social_security": "Social Security Contribution",
-  "employer_social_security": "Employer's Social Security",
-  "withholding_tax": "Withholding Tax",
-  "net_salary": "Net Salary",
-  "lease_price": "Lease Price",
-  "disallowed_expense_tax": "Disallowed Expense Tax",
-  "net_salary_change": "Net Salary Change",
-  "extralegal_benefits": "Extralegal Benefits",
-  "footer": "Indicative calculation. Consult <a href='https://www.socialsecurity.be' target='_blank'>socialsecurity.be</a> for details.",
-  "language": "Language",
-  "no_data": "Enter details to see results.",
-  "errors": {
-    "lease_cost_error": "Lease cost must be non-negative."
+  "app": {
+    "title": "Net Salary Simulator",
+    "subtitle": "Calculate how social benefits affect your net salary.",
+    "comparison": "Salary Comparison",
+    "apiError": "Failed to load salary data. Please try again.",
+    "footer": "Indicative calculation. Consult",
+    "footerLink": "for details.",
+    "language": {
+      "en": "English",
+      "nl": "Dutch"
+    }
+  },
+  "salaryInput": {
+    "grossSalary": "Gross Monthly Salary (€)",
+    "maritalStatus": "Marital Status: Single",
+    "dependents": "Dependents: 0"
+  },
+  "benefitsSelector": {
+    "companyCar": "Company Car",
+    "bicycle": "Company Bicycle",
+    "leaseCost": "Monthly Lease Cost (€)",
+    "catalogValue": "Catalog Value (€)",
+    "co2": "CO2 Emissions (g/km)",
+    "fuelType": "Fuel Type",
+    "fuelTypes": {
+      "diesel": "Diesel",
+      "petrol": "Petrol",
+      "electric": "Electric"
+    },
+    "leaseCostError": "Lease cost must be non-negative."
+  },
+  "salaryOutput": {
+    "enterDetails": "Enter details to see results.",
+    "invalidData": "Error: Invalid salary data.",
+    "component": "Component",
+    "initial": "Initial",
+    "adjusted": "Adjusted",
+    "difference": "Difference",
+    "employerCost": "Employer's Payroll Cost",
+    "leasePrice": "Lease Price",
+    "disallowedExpenseTax": "Disallowed Expense Tax",
+    "employerSocialSecurity": "Employer's Social Security",
+    "grossSalary": "Gross Salary",
+    "employeeSocialSecurity": "Employee Social Security",
+    "benefitInKind": "Benefit in Kind",
+    "withholdingTax": "Withholding Tax",
+    "netSalary": "Net Salary",
+    "extralegalBenefits": "Extralegal Benefits",
+    "benefits": {
+      "companyCar": "Company Car",
+      "bicycle": "Company Bicycle"
+    }
   }
 }
