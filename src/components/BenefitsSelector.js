@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 function BenefitsSelector({ benefits, setBenefits }) {
+  const { t } = useTranslation();
   const [leaseCostError, setLeaseCostError] = useState('');
 
   const handleBenefitChange = (benefit, field, value) => {
     if (benefit === 'companyCar' && field === 'leaseCost') {
       const numValue = Number(value);
       if (numValue < 0) {
-        setLeaseCostError('Lease cost must be non-negative.');
+        setLeaseCostError(t('benefitsSelector.leaseCostError'));
         return;
       } else {
         setLeaseCostError('');
@@ -28,12 +30,12 @@ function BenefitsSelector({ benefits, setBenefits }) {
             checked={benefits.companyCar.active}
             onChange={(e) => handleBenefitChange('companyCar', 'active', e.target.checked)}
           />
-          Company Car
+          {t('benefitsSelector.companyCar')}
         </label>
         {benefits.companyCar.active && (
           <div className="mt-4 space-y-3">
             <label className="block">
-              Monthly Lease Cost (€):
+              {t('benefitsSelector.leaseCost')}:
               <input
                 type="number"
                 value={benefits.companyCar.leaseCost}
@@ -44,7 +46,7 @@ function BenefitsSelector({ benefits, setBenefits }) {
               {leaseCostError && <p className="error-message">{leaseCostError}</p>}
             </label>
             <label className="block">
-              Catalog Value (€):
+              {t('benefitsSelector.catalogValue')}:
               <input
                 type="number"
                 value={benefits.companyCar.catalogValue}
@@ -53,7 +55,7 @@ function BenefitsSelector({ benefits, setBenefits }) {
               />
             </label>
             <label className="block">
-              CO2 Emissions (g/km):
+              {t('benefitsSelector.co2')}:
               <input
                 type="number"
                 value={benefits.companyCar.co2}
@@ -62,14 +64,14 @@ function BenefitsSelector({ benefits, setBenefits }) {
               />
             </label>
             <label className="block">
-              Fuel Type:
+              {t('benefitsSelector.fuelType')}:
               <select
                 value={benefits.companyCar.fuelType}
                 onChange={(e) => handleBenefitChange('companyCar', 'fuelType', e.target.value)}
               >
-                <option value="diesel">Diesel</option>
-                <option value="petrol">Petrol</option>
-                <option value="electric">Electric</option>
+                <option value="diesel">{t('benefitsSelector.fuelTypes.diesel')}</option>
+                <option value="petrol">{t('benefitsSelector.fuelTypes.petrol')}</option>
+                <option value="electric">{t('benefitsSelector.fuelTypes.electric')}</option>
               </select>
             </label>
           </div>
@@ -82,11 +84,11 @@ function BenefitsSelector({ benefits, setBenefits }) {
             checked={benefits.bicycle.active}
             onChange={(e) => handleBenefitChange('bicycle', 'active', e.target.checked)}
           />
-          Company Bicycle
+          {t('benefitsSelector.bicycle')}
         </label>
         {benefits.bicycle.active && (
           <label className="block mt-4">
-            Monthly Lease Cost (€):
+            {t('benefitsSelector.leaseCost')}:
             <input
               type="number"
               value={benefits.bicycle.leaseCost}
