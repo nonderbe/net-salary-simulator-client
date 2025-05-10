@@ -1,38 +1,55 @@
 {
-  "title": "Nettoloon Simulator",
-  "subtitle": "Bereken hoe sociale voordelen uw nettoloon beïnvloeden.",
-  "gross_salary": "Bruto Maandloon (€)",
-  "marital_status": "Burgerlijke Staat: Alleenstaand",
-  "dependents": "Personen ten laste: 0",
-  "company_car": "Bedrijfswagen",
-  "catalog_value": "Cataloguswaarde (€)",
-  "co2_emissions": "CO2-uitstoot (g/km)",
-  "lease_cost": "Maandelijkse Leasekost (€)",
-  "fuel_type": "Brandstoftype",
-  "diesel": "Diesel",
-  "petrol": "Benzine",
-  "electric": "Elektrisch",
-  "bicycle": "Bedrijfsfiets",
-  "salary_comparison": "Loonvergelijking",
-  "component": "Component",
-  "initial": "Initieel",
-  "adjusted": "Aangepast",
-  "difference": "Verschil",
-  "employer_cost": "Totale Loonkost Werkgever",
-  "gross_salary_label": "Bruto Loon",
-  "benefit_in_kind": "Voordeel Alle Aard",
-  "social_security": "Socialezekerheidsbijdrage",
-  "employer_social_security": "Werkgeversbijdrage Sociale Zekerheid",
-  "withholding_tax": "Voorheffing",
-  "net_salary": "Nettoloon",
-  "lease_price": "Leasekost",
-  "disallowed_expense_tax": "Verworpen Uitgaven Belasting",
-  "net_salary_change": "Nettoloon Verandering",
-  "extralegal_benefits": "Extralegale Voordelen",
-  "footer": "Indicatieberekening. Raadpleeg <a href='https://www.socialsecurity.be' target='_blank'>socialsecurity.be</a> voor details.",
-  "language": "Taal",
-  "no_data": "Voer details in om resultaten te zien.",
-  "errors": {
-    "lease_cost_error": "Leasekost moet niet-negatief zijn."
+  "app": {
+    "title": "Nettoloon Simulator",
+    "subtitle": "Bereken hoe sociale voordelen uw nettoloon beïnvloeden.",
+    "comparison": "Loonvergelijking",
+    "apiError": "Kan loongegevens niet laden. Probeer opnieuw.",
+    "footer": "Indicatieberekening. Raadpleeg",
+    "footerLink": "voor details.",
+    "language": {
+      "en": "Engels",
+      "nl": "Nederlands"
+    }
+  },
+  "salaryInput": {
+    "grossSalary": "Brutomaandloon (€)",
+    "maritalStatus": "Burgerlijke staat: Alleenstaand",
+    "dependents": "Personen ten laste: 0"
+  },
+  "benefitsSelector": {
+    "companyCar": "Bedrijfswagen",
+    "bicycle": "Bedrijfsfiets",
+    "leaseCost": "Maandelijkse leasekost (€)",
+    "catalogValue": "Cataloguswaarde (€)",
+    "co2": "CO2-uitstoot (g/km)",
+    "fuelType": "Brandstoftype",
+    "fuelTypes": {
+      "diesel": "Diesel",
+      "petrol": "Benzine",
+      "electric": "Elektrisch"
+    },
+    "leaseCostError": "Leasekost moet niet-negatief zijn."
+  },
+  "salaryOutput": {
+    "enterDetails": "Voer gegevens in om resultaten te zien.",
+    "invalidData": "Fout: Ongeldige loongegevens.",
+    "component": "Component",
+    "initial": "Initieel",
+    "adjusted": "Aangepast",
+    "difference": "Verschil",
+    "employerCost": "Loonkosten Werkgever",
+    "leasePrice": "Leaseprijs",
+    "disallowedExpenseTax": "Verworpen Uitgaven",
+    "employerSocialSecurity": "Socialezekerheidsbijdrage Werkgever",
+    "grossSalary": "Brutoloon",
+    "employeeSocialSecurity": "Werknemersbijdrage in de Sociale Zekerheid",
+    "benefitInKind": "Voordeel Alle Aard",
+    "withholdingTax": "Voorheffing",
+    "netSalary": "Nettoloon",
+    "extralegalBenefits": "Extralegale Voordelen",
+    "benefits": {
+      "companyCar": "Bedrijfswagen",
+      "bicycle": "Bedrijfsfiets"
+    }
   }
 }
