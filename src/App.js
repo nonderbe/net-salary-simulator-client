@@ -15,7 +15,7 @@ function App() {
   const [initialSalary, setInitialSalary] = useState(null);
   const [adjustedSalary, setAdjustedSalary] = useState(null);
   const [error, setError] = useState(null);
-  const [period, setPeriod] = useState('monthly'); // Monthly or Yearly
+  const [period, setPeriod] = useState('monthly');
 
   const calculateSalaries = async () => {
     console.log('calculateSalaries called with:', { grossSalary, benefits, period });
@@ -40,7 +40,9 @@ function App() {
   };
 
   useEffect(() => {
-    calculateSalaries();
+    if (grossSalary > 0) {
+      calculateSalaries();
+    }
   }, [grossSalary, benefits, period]);
 
   const changeLanguage = (lng) => {
