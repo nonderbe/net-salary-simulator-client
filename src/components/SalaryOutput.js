@@ -1,20 +1,21 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-function SalaryOutput({ initialSalary, adjustedSalary }) {
+function SalaryOutput({ initialSalary, adjustedSalary, period }) {
   const { t } = useTranslation();
 
   if (!initialSalary || !adjustedSalary) {
     return <p>{t('salaryOutput.enterDetails')}</p>;
   }
 
-  // Ensure all required keys exist to prevent undefined errors
   const requiredKeys = [
     'employerCost',
     'grossSalary',
     'netSalary',
     'leasePrice',
     'employerSocialSecurity',
+    'vacationPay',
+    'yearEndBonus',
     'socialSecurity',
     'benefitInKind',
     'withholdingTax',
@@ -49,6 +50,14 @@ function SalaryOutput({ initialSalary, adjustedSalary }) {
         {
           label: t('salaryOutput.employerSocialSecurity'),
           key: 'employerSocialSecurity',
+        },
+        {
+          label: t('salaryOutput.vacationPay'),
+          key: 'vacationPay',
+        },
+        {
+          label: t('salaryOutput.yearEndBonus'),
+          key: 'yearEndBonus',
         },
       ],
     },
