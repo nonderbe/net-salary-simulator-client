@@ -5,6 +5,7 @@ function SalaryOutput({ initialSalary, adjustedSalary, period }) {
   const { t } = useTranslation();
 
   if (!initialSalary || !adjustedSalary) {
+    console.log('SalaryOutput: initialSalary or adjustedSalary is null', { initialSalary, adjustedSalary });
     return <p>{t('salaryOutput.enterDetails')}</p>;
   }
 
@@ -12,20 +13,26 @@ function SalaryOutput({ initialSalary, adjustedSalary, period }) {
     'employerCost',
     'grossSalary',
     'netSalary',
-    'leasePrice',
     'employerSocialSecurity',
     'vacationPay',
     'yearEndBonus',
-    'socialSecurity',
-    'benefitInKind',
+    'employeeSocialSecurity',
     'withholdingTax',
-    'disallowedExpenseTax',
-    'extralegalBenefits',
   ];
-  const isValidSalary = (salary) =>
-    requiredKeys.every((key) => key in salary || key === 'disallowedExpenseTax' || key === 'extralegalBenefits');
+
+  const optionalKeys = ['leasePrice', 'benefitInKind', 'disallowedExpenseTax', 'extralegalBenefits'];
+
+  const isValidSalary = (salary) => {
+    const missingKeys = requiredKeys.filter((key) => !(key in salary));
+    if (missingKeys.length > 0) {
+      console.log('SalaryOutput: Invalid salary, missing keys:', missingKeys, salary);
+      return false;
+    }
+    return true;
+  };
 
   if (!isValidSalary(initialSalary) || !isValidSalary(adjustedSalary)) {
+    console.log('SalaryOutput: Validation failed', { initialSalary, adjustedSalary });
     return <p>{t('salaryOutput.invalidData')}</p>;
   }
 
@@ -68,7 +75,7 @@ function SalaryOutput({ initialSalary, adjustedSalary, period }) {
       subcategories: [
         {
           label: t('salaryOutput.employeeSocialSecurity'),
-          key: 'socialSecurity',
+          key: 'employeeSocialSecurity',
         },
         {
           label: t('salaryOutput.benefitInKind'),
