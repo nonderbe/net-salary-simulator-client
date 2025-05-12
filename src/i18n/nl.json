@@ -9,6 +9,10 @@
     "language": {
       "en": "Engels",
       "nl": "Nederlands"
+    },
+    "tab": {
+      "monthly": "Maandelijks",
+      "yearly": "Jaarlijks"
     }
   },
   "salaryInput": {
@@ -41,6 +45,8 @@
     "leasePrice": "Leaseprijs",
     "disallowedExpenseTax": "Verworpen Uitgaven",
     "employerSocialSecurity": "Socialezekerheidsbijdrage Werkgever",
+    "vacationPay": "Vakantiegeld",
+    "yearEndBonus": "Eindejaarsbonus",
     "grossSalary": "Brutoloon",
     "employeeSocialSecurity": "Werknemersbijdrage in de Sociale Zekerheid",
     "benefitInKind": "Voordeel Alle Aard",
