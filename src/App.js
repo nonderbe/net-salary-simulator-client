@@ -15,18 +15,21 @@ function App() {
   const [initialSalary, setInitialSalary] = useState(null);
   const [adjustedSalary, setAdjustedSalary] = useState(null);
   const [error, setError] = useState(null);
+  const [period, setPeriod] = useState('monthly'); // Monthly or Yearly
 
   const calculateSalaries = async () => {
+    console.log('calculateSalaries called with:', { grossSalary, benefits, period });
     try {
       const response = await fetch(`${process.env.REACT_APP_API_URL}/api/salary/calculate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ grossSalary, benefits }),
+        body: JSON.stringify({ grossSalary, benefits, period }),
       });
       if (!response.ok) {
-        throw new Error('API request failed');
+        throw new Error(`API request failed with status ${response.status}`);
       }
       const data = await response.json();
+      console.log('API response:', data);
       setInitialSalary(data.initial);
       setAdjustedSalary(data.adjusted);
       setError(null);
@@ -38,7 +41,7 @@ function App() {
 
   useEffect(() => {
     calculateSalaries();
-  }, [grossSalary, benefits]);
+  }, [grossSalary, benefits, period]);
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
@@ -59,9 +62,23 @@ function App() {
       </header>
       <div className="main">
         <h2>{t('app.comparison')}</h2>
+        <div className="tabs">
+          <button
+            className={period === 'monthly' ? 'active' : ''}
+            onClick={() => setPeriod('monthly')}
+          >
+            {t('app.tab.monthly')}
+          </button>
+          <button
+            className={period === 'yearly' ? 'active' : ''}
+            onClick={() => setPeriod('yearly')}
+          >
+            {t('app.tab.yearly')}
+          </button>
+        </div>
         {error && <p className="error-message">{error}</p>}
         <SalaryInput grossSalary={grossSalary} setGrossSalary={setGrossSalary} />
-        <SalaryOutput initialSalary={initialSalary} adjustedSalary={adjustedSalary} />
+        <SalaryOutput initialSalary={initialSalary} adjustedSalary={adjustedSalary} period={period} />
       </div>
       <footer>
         <p>
