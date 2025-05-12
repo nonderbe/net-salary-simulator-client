@@ -9,6 +9,10 @@
     "language": {
       "en": "English",
       "nl": "Dutch"
+    },
+    "tab": {
+      "monthly": "Monthly",
+      "yearly": "Yearly"
     }
   },
   "salaryInput": {
@@ -41,6 +45,8 @@
     "leasePrice": "Lease Price",
     "disallowedExpenseTax": "Disallowed Expense Tax",
     "employerSocialSecurity": "Employer's Social Security",
+    "vacationPay": "Vacation Pay",
+    "yearEndBonus": "Year-End Bonus",
     "grossSalary": "Gross Salary",
     "employeeSocialSecurity": "Employee Social Security",
     "benefitInKind": "Benefit in Kind",
