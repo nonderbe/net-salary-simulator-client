@@ -43,7 +43,7 @@
     "difference": "Verschil",
     "employerCost": "Loonkosten Werkgever",
     "leasePrice": "Leaseprijs",
-    "disallowedExpenseTax": "Verworpen Uitgaven",
+    "disallowedExpenseTax": "Verworpen Uitgaven - 17% VAA",
     "disallowedExpenseTaxCar": "Verworpen Uitgaven Niet-Aftrekbare Kosten Bedrijfswagen",
     "solidarityContribution": "Solidariteitsbijdrage",
     "employerSocialSecurity": "Socialezekerheidsbijdrage Werkgever",
@@ -52,7 +52,7 @@
     "grossSalary": "Brutoloon",
     "employeeSocialSecurity": "Werknemersbijdrage in de Sociale Zekerheid",
     "benefitInKind": "Voordeel Alle Aard",
-    "withholdingTax": "Voorheffing",
+    "withholdingTax": "Bedrijfsvoorheffing",
     "netSalary": "Nettoloon",
     "extralegalBenefits": "Extralegale Voordelen",
     "benefits": {
