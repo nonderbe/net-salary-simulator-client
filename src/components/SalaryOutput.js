@@ -20,7 +20,14 @@ function SalaryOutput({ initialSalary, adjustedSalary, period }) {
     'withholdingTax',
   ];
 
-  const optionalKeys = ['leasePrice', 'benefitInKind', 'disallowedExpenseTax', 'extralegalBenefits'];
+  const optionalKeys = [
+    'leasePrice',
+    'benefitInKind',
+    'disallowedExpenseTax',
+    'disallowedExpenseTaxCar',
+    'solidarityContribution',
+    'extralegalBenefits',
+  ];
 
   const isValidSalary = (salary) => {
     const missingKeys = requiredKeys.filter((key) => !(key in salary));
@@ -51,6 +58,18 @@ function SalaryOutput({ initialSalary, adjustedSalary, period }) {
         {
           label: t('salaryOutput.disallowedExpenseTax'),
           key: 'disallowedExpenseTax',
+          conditional: true,
+          adjustedOnly: true,
+        },
+        {
+          label: t('salaryOutput.disallowedExpenseTaxCar'),
+          key: 'disallowedExpenseTaxCar',
+          conditional: true,
+          adjustedOnly: true,
+        },
+        {
+          label: t('salaryOutput.solidarityContribution'),
+          key: 'solidarityContribution',
           conditional: true,
           adjustedOnly: true,
         },
