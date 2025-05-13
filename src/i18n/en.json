@@ -44,6 +44,8 @@
     "employerCost": "Employer's Payroll Cost",
     "leasePrice": "Lease Price",
     "disallowedExpenseTax": "Disallowed Expense Tax",
+    "disallowedExpenseTaxCar": "Disallowed Expense Tax Car",
+    "solidarityContribution": "Solidarity Contribution",
     "employerSocialSecurity": "Employer's Social Security",
     "vacationPay": "Vacation Pay",
     "yearEndBonus": "Year-End Bonus",
