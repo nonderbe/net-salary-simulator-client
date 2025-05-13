@@ -43,7 +43,7 @@
     "difference": "Difference",
     "employerCost": "Employer's Payroll Cost",
     "leasePrice": "Lease Price",
-    "disallowedExpenseTax": "Disallowed Expense Tax",
+    "disallowedExpenseTax": "Disallowed Expense Tax - 17% BIK",
     "disallowedExpenseTaxCar": "Disallowed Expense Tax Car",
     "solidarityContribution": "Solidarity Contribution",
     "employerSocialSecurity": "Employer's Social Security",
@@ -52,7 +52,7 @@
     "grossSalary": "Gross Salary",
     "employeeSocialSecurity": "Employee Social Security",
     "benefitInKind": "Benefit in Kind",
-    "withholdingTax": "Withholding Tax",
+    "withholdingTax": "Corporate Withholding Tax",
     "netSalary": "Net Salary",
     "extralegalBenefits": "Extralegal Benefits",
     "benefits": {
