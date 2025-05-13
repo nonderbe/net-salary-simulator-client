@@ -44,7 +44,7 @@
     "employerCost": "Loonkosten Werkgever",
     "leasePrice": "Leaseprijs",
     "disallowedExpenseTax": "Verworpen Uitgaven - 17% VAA",
-    "disallowedExpenseTaxCar": "Verworpen Uitgaven Niet-Aftrekbare Kosten Bedrijfswagen",
+    "disallowedExpenseTaxCar": "Verworpen Uitgaven Niet-Aftrekbare Kosten Bedrijfswagen mbt CO2 uitstoot",
     "solidarityContribution": "Solidariteitsbijdrage",
     "employerSocialSecurity": "Socialezekerheidsbijdrage Werkgever",
     "vacationPay": "Vakantiegeld",
